@@ -4,6 +4,7 @@ import Login from './views/login'
 
 import './App.css';
 import { render } from '@testing-library/react';
+import './custom.css'
 
 class App extends React.Component {
 
