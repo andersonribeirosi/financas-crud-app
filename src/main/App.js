@@ -7,15 +7,19 @@ import { render } from '@testing-library/react';
 import '../custom.css'
 
 import Rotas from '../main/rotas'
+import Navbar from '../components/navbar'
 
 class App extends React.Component {
 
   render() {
 
     return (
+      <>
+        <Navbar />
       <div>
         <Rotas />
       </div>
+      </>
     )
   }
 }
