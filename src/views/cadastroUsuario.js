@@ -20,7 +20,7 @@ class CadastroUsuario extends React.Component {
         this.service = new UsuarioService;
     }
 
-    validar = () => {
+    validarCampos = () => {
         const msgs = []
 
         if (!this.state.nome) {
@@ -34,27 +34,28 @@ class CadastroUsuario extends React.Component {
         }
 
         if (!this.state.senha || !this.state.senhaRepeticao) {
-            msgs.push('Informe a senha duas vezes')
+            msgs.push('Informe a Senha duas vezes')
         } else if (this.state.senha !== this.state.senhaRepeticao) {
-            msgs.push('As senhas não conferem')
+            msgs.push('As Senhas não conferem')
         }
         return msgs;
     }
 
     cadastrar = () => {
-        const msgs = this.validar();
-        if(msgs && msgs.length > 0){
+        const msgs = this.validarCampos();
+        if (msgs && msgs.length > 0) {
             msgs.forEach((msg, index) => {
                 mensagemErro(msg)
             });
             return false;
         }
-        
+
         const usuario = {
             nome: this.state.nome,
             email: this.state.email,
             senha: this.state.senha
         }
+        
         this.service.salvar(usuario)
             .then(response => {
                 mensagemSucesso('Usuário cadastrado com sucesso')
