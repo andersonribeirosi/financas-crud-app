@@ -8,6 +8,8 @@ import UsuarioService from '../app/service/usuarioService'
 
 import LocalStorageService from '../app/service/localstorageService'
 
+import { mensagemErro, mensagemSucesso } from '../components/toastr'
+
 class Login extends React.Component {
 
     state = {
@@ -15,7 +17,7 @@ class Login extends React.Component {
         senha: ''
     }
 
-    constructor(){
+    constructor() {
         super();
         this.service = new UsuarioService();
     }
@@ -24,11 +26,11 @@ class Login extends React.Component {
         this.service.autenticar({
             email: this.state.email,
             senha: this.state.senha
-        }).then( response => {
+        }).then(response => {
             LocalStorageService.adicionarItem('_usuario_logado', response.data)
             this.props.history.push('/home')
         }).catch(erro => {
-            console.log(erro.response);
+            mensagemErro(erro.response.data)
         })
     }
 
