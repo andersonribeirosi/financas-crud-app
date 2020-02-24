@@ -1,28 +1,32 @@
 import React from 'react'
 import ApiService from '../apiservice';
 
-export default class LancamentoService extends ApiService{
+export default class LancamentoService extends ApiService {
 
-    constructor(){
+    constructor() {
         super('api/lancamentos')
     }
 
-    consultar(lancamentoFiltro){
+    consultar(lancamentoFiltro) {
         let params = `?ano=${lancamentoFiltro.ano}`
 
-        if(lancamentoFiltro.mes){
+        if (lancamentoFiltro.mes) {
             params = `${params}&mes=${lancamentoFiltro.mes}`
         }
 
-        if(lancamentoFiltro.tipo){
+        if (lancamentoFiltro.tipo) {
             params = `${params}&tipo=${lancamentoFiltro.tipo}`
         }
 
-        if(lancamentoFiltro.status){
+        if (lancamentoFiltro.status) {
             params = `${params}&status=${lancamentoFiltro.status}`
         }
 
-        return this.get('')
-    }    
+        if (lancamentoFiltro.usuario) {
+            params = `${params}&usuario=${lancamentoFiltro.usuario}`
+        }
 
+        return this.get(params)
     }
+
+}
