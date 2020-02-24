@@ -1602,6 +1602,11 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
+accounting@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/accounting/-/accounting-0.4.1.tgz#87dd4103eff7f4460f1e186f5c677ed6cf566883"
+  integrity sha1-h91BA+/39EYPHhhvXGd+1s9WaIM=
+
 acorn-globals@^4.1.0, acorn-globals@^4.3.0:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/acorn-globals/-/acorn-globals-4.3.4.tgz#9fa1926addc11c97308c4e66d7add0d40c3272e7"
@@ -3228,6 +3233,15 @@ csstype@^2.2.0:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.9.tgz#05141d0cd557a56b8891394c1911c40c8a98d098"
   integrity sha512-xz39Sb4+OaTsULgUERcCk+TJj8ylkL4aSVDQiX/ksxbELSqwkgt4d4RD7fovIdgJGSuNYqwZEiVjYY5l0ask+Q==
+
+currency-formatter@^1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/currency-formatter/-/currency-formatter-1.5.5.tgz#907790bb0b7f129c4a64d2924e0d7fa36db0cf52"
+  integrity sha512-PEsZ9fK2AwPBYgzWTtqpSckam7hFDkT8ZKFAOrsooR0XbydZEKuFioUzcc3DoT2mCDkscjf1XdT6Qq53ababZQ==
+  dependencies:
+    accounting "^0.4.1"
+    locale-currency "0.0.2"
+    object-assign "^4.1.1"
 
 cyclist@^1.0.1:
   version "1.0.1"
@@ -6190,6 +6204,11 @@ loader-utils@1.2.3, loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.
     big.js "^5.2.2"
     emojis-list "^2.0.0"
     json5 "^1.0.1"
+
+locale-currency@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/locale-currency/-/locale-currency-0.0.2.tgz#e2c90607563ce47a59f9559e45a70e24e4db4b6d"
+  integrity sha1-4skGB1Y85HpZ+VWeRacOJOTbS20=
 
 locate-path@^2.0.0:
   version "2.0.0"
