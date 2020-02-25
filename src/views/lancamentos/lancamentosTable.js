@@ -6,7 +6,7 @@ export default props => {
 
     const rows = props.lancamentos.map(lancamento => {
         return (
-            <tr key={lancamento.id}>
+            <tr key={lancamento.id} className="text-center">
                 <td>{lancamento.descricao}</td>
                 <td>{currencyFormatter.format(lancamento.valor, { locale: 'pt-BR' })}</td>
                 <td>{lancamento.tipo}</td>
@@ -28,7 +28,7 @@ export default props => {
     return (
         <table className="table table-hover">
             <thead>
-                <tr>
+                <tr className="text-center">
                     <th scope="col"> Descrição </th>
                     <th scope="col"> Valor </th>
                     <th scope="col"> Tipo de Lançamento </th>
