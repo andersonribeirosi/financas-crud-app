@@ -4,6 +4,8 @@ import FormGroup from '../../components/form-group'
 import Card from '../../components/card'
 import LancamentoService from '../../app/service/lancamentoService'
 import {withRouter} from 'react-router-dom'
+import * as mensagens from '../../components/toastr'
+import LocalStorageService from '../../app/service/localstorageService'
 
 class CadstroLancamentos extends React.Component {
 
@@ -14,7 +16,8 @@ class CadstroLancamentos extends React.Component {
         mes: '',
         ano: '',
         tipo: '',
-        status: ''
+        status: '',
+        usuario: null
     }
 
     constructor(){
@@ -22,13 +25,45 @@ class CadstroLancamentos extends React.Component {
         this.service = new LancamentoService();
     }
 
+    componentDidMount(){
+        const params = this.props.match.params
+        if(params.id){
+            this.service.obterPorId(params.id)
+            .then(response => {
+                this.setState({...response.data})
+            })
+        }
+        
+    }
+
     cancelar = () => {
     this.props.history.push('/home')
     }
 
     submit = () => {
-        console.log(this.state);
-        
+        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
+        const { descricao, ano, mes, valor, tipo} = this.state;
+        const lancamento = { descricao, ano, mes, valor, tipo, usuario: usuarioLogado.id};
+        this.service.salvar(lancamento)
+        .then(response => {
+            mensagens.mensagemSucesso('Lançamento cadastrado com sucesso!')
+            this.props.history.push('/consulta-lancamentos');
+        }).catch(error => {
+            mensagens.mensagemErro("Todos os Campos são de preenchimento obrigatório")
+        })    
+    }
+
+    atualizar = () => {
+        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
+        const { descricao, ano, mes, valor, tipo, id, usuario} = this.state;
+        const lancamento = { descricao, ano, mes, valor, tipo, id, usuario};
+        this.service.salvar(lancamento)
+        .then(response => {
+            mensagens.mensagemSucesso('Lançamento atualizado com sucesso!')
+            this.props.history.push('/consulta-lancamentos');
+        }).catch(error => {
+            mensagens.mensagemErro("Todos os Campos são de preenchimento obrigatório")
+        })    
     }
 
     handleChange = (event) => {
@@ -112,8 +147,14 @@ class CadstroLancamentos extends React.Component {
                         
                     </div>
 
-                    <button type="button" onClick={this.submit} className="btn btn-primary mr-3 mt-2"> Salvar </button>
+                    <button type="button" onClick={this.submit} className="btn btn-success mr-3 mt-2"> Salvar </button>
+                    <button type="button" onClick={this.atualizar} className="btn btn-primary mr-3 mt-2"> Atualizar </button>
                     <button type="button" onClick={this.cancelar} className="btn btn-danger mt-2"> Cancelar </button>
+                    <a
+                                className="btn btn-danger btn-lg mt-3 float-right"
+                                href="#/consulta-lancamentos"
+                                role="button"> <i className="fa fa-users"> Consultar Lançamentos </i>
+                            </a>
                 </Card>
             </div>
         )

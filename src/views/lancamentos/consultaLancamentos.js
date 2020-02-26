@@ -31,7 +31,7 @@ class ConsultaLancamentos extends React.Component {
     }
 
     editar = (id) => {
-        console.log("Editando lançamento", id);
+        this.props.history.push(`/cadastro-lancamentos/${id}`)
     }
 
     deletar = () => {
@@ -57,10 +57,10 @@ class ConsultaLancamentos extends React.Component {
     }
 
     buscar = () => {
-        if (!this.state.ano) {
-            mensagens.mensagemErro('O preenchimento do campo Ano é obrigatório');
-            return false;
-        }
+        // if (!this.state.ano) {
+        //     mensagens.mensagemErro('O preenchimento do campo Ano é obrigatório');
+        //     return false;
+        // }
 
         const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
 
@@ -78,6 +78,10 @@ class ConsultaLancamentos extends React.Component {
             }).catch(error => {
                 console.log(error);
             })
+    }
+
+    cadastrar = () => {
+        this.props.history.push('/cadastro-lancamentos')
     }
 
     render() {
@@ -140,7 +144,7 @@ class ConsultaLancamentos extends React.Component {
                                         className="form-control" />
                                 </FormGroup>
                                 <button onClick={this.buscar} type="button" className="btn btn-success mr-3">Buscar</button>
-                                <button type="button" className="btn btn-danger">Cadastrar</button>
+                                <button onClick={this.cadastrar} type="button" className="btn btn-danger">Cadastrar</button>
                             </div>
                         </div>
                     </div>

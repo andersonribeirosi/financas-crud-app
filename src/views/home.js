@@ -5,10 +5,12 @@ import UsuarioService from '../app/service/usuarioService'
 
 import localStorageService from '../app/service/localstorageService'
 
+import currencyFormatter from 'currency-formatter'
+
 class Home extends React.Component {
 
     state = {
-        saldo: 0
+        saldo: 0,
     }
 
     constructor(){
@@ -34,17 +36,17 @@ class Home extends React.Component {
                 <div className="jumbotron">
         <h1 className="display-3">Bem Vindo</h1>
                     <p className="lead">Sistema de Finanças - Receitas e Despesas</p>
-                    <p className="lead">Saldo atual é de R$ {this.state.saldo}</p>
+                    <p className="lead">Saldo atual é de R$ {currencyFormatter.format(this.state.saldo, { locale: 'pt-BR' })}</p>
                     <hr className="my-4" />
                     <p> Área administrativa, se não possui cadastro, utilize a barra de navegação ou clique no botão abaixo
                    <p className="lead">
                             <a
-                                className="btn btn-primary btn-lg mt-3 mr-3"
-                                href="#/cadastro-usuarios"
-                                role="button"> <i className="fa fa-users"> Cadastrar Usuário </i>
+                                className="btn btn-primary btn-lg mt-4 mr-3"
+                                href="#/cadastro-lancamentos"
+                                role="button"> <i className="fa fa-users"> Cadastrar Lançamentos </i>
                             </a>
                             <a
-                                className="btn btn-danger btn-lg mt-3"
+                                className="btn btn-danger btn-lg mt-4"
                                 href="#/consulta-lancamentos"
                                 role="button"> <i className="fa fa-users"> Consultar Lançamentos </i>
                             </a>
