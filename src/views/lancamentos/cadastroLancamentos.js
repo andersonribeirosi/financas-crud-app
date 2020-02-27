@@ -17,7 +17,8 @@ class CadstroLancamentos extends React.Component {
         ano: '',
         tipo: '',
         status: '',
-        usuario: null
+        usuario: null,
+        atualizando: false
     }
 
     constructor(){
@@ -30,14 +31,14 @@ class CadstroLancamentos extends React.Component {
         if(params.id){
             this.service.obterPorId(params.id)
             .then(response => {
-                this.setState({...response.data})
+                this.setState({...response.data, atualizando: true})
             })
         }
         
     }
 
     cancelar = () => {
-    this.props.history.push('/home')
+    this.props.history.push('/consulta-lancamentos')
     }
 
     submit = () => {
@@ -46,21 +47,20 @@ class CadstroLancamentos extends React.Component {
         const lancamento = { descricao, ano, mes, valor, tipo, usuario: usuarioLogado.id};
         this.service.salvar(lancamento)
         .then(response => {
-            mensagens.mensagemSucesso('Lançamento cadastrado com sucesso!')
             this.props.history.push('/consulta-lancamentos');
+            mensagens.mensagemSucesso('Lançamento cadastrado com sucesso!')
         }).catch(error => {
             mensagens.mensagemErro("Todos os Campos são de preenchimento obrigatório")
         })    
     }
 
     atualizar = () => {
-        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
-        const { descricao, ano, mes, valor, tipo, id, usuario} = this.state;
-        const lancamento = { descricao, ano, mes, valor, tipo, id, usuario};
-        this.service.salvar(lancamento)
+        const { descricao, valor, mes, ano, tipo, status, usuario, id} = this.state;
+        const lancamento = { descricao, valor, mes, ano, tipo, status, usuario, id};
+        this.service.atualizar(lancamento)
         .then(response => {
-            mensagens.mensagemSucesso('Lançamento atualizado com sucesso!')
             this.props.history.push('/consulta-lancamentos');
+            mensagens.mensagemSucesso('Lançamento atualizado com sucesso!')
         }).catch(error => {
             mensagens.mensagemErro("Todos os Campos são de preenchimento obrigatório")
         })    
@@ -80,7 +80,7 @@ class CadstroLancamentos extends React.Component {
 
         return (
             <div className="container">
-                <Card title="Cadastro de Lançamentos">
+                <Card title={this.state.atualizando ? 'Atualizando Lançamento' : 'Cadastro de Lançamento'}>
                     <div className="row">
                         <div className="col md-12">
                             <FormGroup id="inputDescricao" label="Descrição: *">
@@ -146,15 +146,22 @@ class CadstroLancamentos extends React.Component {
                         </div>
                         
                     </div>
-
-                    <button type="button" onClick={this.submit} className="btn btn-success mr-3 mt-2"> Salvar </button>
-                    <button type="button" onClick={this.atualizar} className="btn btn-primary mr-3 mt-2"> Atualizar </button>
-                    <button type="button" onClick={this.cancelar} className="btn btn-danger mt-2"> Cancelar </button>
-                    <a
+                        <div className="row">
+                            <div className="col-md-6">
+                                {this.state.atualizando ? 
+                                (
+                                    <button type="button" onClick={this.atualizar} className="btn btn-primary mr-3 mt-2"> Atualizar </button>
+                                ) : (
+                                    <button type="button" onClick={this.submit} className="btn btn-success mr-3 mt-2"> Salvar </button>
+                                )}
+                                    <button type="button" onClick={this.cancelar} className="btn btn-danger mt-2"> Cancelar </button>
+                            </div>
+                        </div>
+                    {/* <a
                                 className="btn btn-danger btn-lg mt-3 float-right"
                                 href="#/consulta-lancamentos"
                                 role="button"> <i className="fa fa-users"> Consultar Lançamentos </i>
-                            </a>
+                            </a> */}
                 </Card>
             </div>
         )
