@@ -34,6 +34,11 @@ class ConsultaLancamentos extends React.Component {
         this.props.history.push(`/cadastro-lancamentos/${id}`)
     }
 
+    
+    abrirConfirmação = (lancamento) => {
+        this.setState({showConfirmDialog: true, lancamentoDeletar: lancamento})
+    }
+
     deletar = () => {
         this.service.deletar(this.state.lancamentoDeletar.id)
             .then(response => {
@@ -48,9 +53,6 @@ class ConsultaLancamentos extends React.Component {
 
     }
 
-    abrirConfirmação = (lancamento) => {
-        this.setState({showConfirmDialog: true, lancamentoDeletar: lancamento})
-    }
 
     cancelarDelecao = () => {
         this.setState({showConfirmDialog: false, lancamentoDeletar: {}})

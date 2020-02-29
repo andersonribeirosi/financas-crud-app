@@ -6,6 +6,8 @@ import LancamentoService from '../../app/service/lancamentoService'
 import {withRouter} from 'react-router-dom'
 import * as mensagens from '../../components/toastr'
 import LocalStorageService from '../../app/service/localstorageService'
+import { Dialog } from 'primereact/dialog';
+import {Button} from 'primereact/button';
 
 class CadstroLancamentos extends React.Component {
 
@@ -50,7 +52,7 @@ class CadstroLancamentos extends React.Component {
         } catch (erro) {
                 const erroMsg = erro.msgsError
                 erroMsg.forEach(msg => mensagens.mensagemErro(msg));
-                return false;
+                return false
         }       
 
         
@@ -63,10 +65,11 @@ class CadstroLancamentos extends React.Component {
         })    
     }
 
+
     atualizar = () => {
         const { descricao, valor, mes, ano, tipo, status, usuario, id} = this.state;
         const lancamento = { descricao, valor, mes, ano, tipo, status, usuario, id};
-        this.service.atualizar(lancamento)
+            this.service.atualizar(lancamento)
         .then(response => {
             this.props.history.push('/consulta-lancamentos');
             mensagens.mensagemSucesso('Lançamento atualizado com sucesso!')
@@ -86,6 +89,7 @@ class CadstroLancamentos extends React.Component {
 
         const tipos = this.service.obterTipos();
         const meses = this.service.obterListaMeses();
+
 
         return (
             <div className="container">
@@ -171,6 +175,7 @@ class CadstroLancamentos extends React.Component {
                                 href="#/consulta-lancamentos"
                                 role="button"> <i className="fa fa-users"> Consultar Lançamentos </i>
                             </a> */}
+                
                 </Card>
             </div>
         )
