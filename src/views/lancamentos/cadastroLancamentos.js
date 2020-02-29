@@ -45,6 +45,15 @@ class CadstroLancamentos extends React.Component {
         const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
         const { descricao, ano, mes, valor, tipo} = this.state;
         const lancamento = { descricao, ano, mes, valor, tipo, usuario: usuarioLogado.id};
+        try {
+                this.service.validarCampos(lancamento)
+        } catch (erro) {
+                const erroMsg = erro.msgsError
+                erroMsg.forEach(msg => mensagens.mensagemErro(msg));
+                return false;
+        }       
+
+        
         this.service.salvar(lancamento)
         .then(response => {
             this.props.history.push('/consulta-lancamentos');

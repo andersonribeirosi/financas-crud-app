@@ -1,6 +1,8 @@
 import React from 'react'
 import ApiService from '../apiservice';
 
+import ErroValicadao from '../../app/exception/erroValidacao'
+
 export default class LancamentoService extends ApiService {
 
     constructor() {
@@ -69,6 +71,34 @@ export default class LancamentoService extends ApiService {
         }
 
         return this.get(params)
+    }
+
+    validarCampos = (lancamento) => {
+        const erros = [];
+
+        if(!lancamento.descricao){
+            erros.push('Informe a Descrição!')
+        }
+
+        if(!lancamento.ano){
+            erros.push('Informe o Ano!')
+        }
+
+        if(!lancamento.mes){
+            erros.push('Informe o Mês!')
+        }
+
+        if(!lancamento.valor){
+            erros.push('Informe o valor!')
+        }
+
+        if(!lancamento.tipo){
+            erros.push('Informe o Tipo de Lançamento!')
+        }
+
+        if(erros && erros.length > 0) {
+            throw new ErroValicadao(erros)
+        }
     }
 
     deletar(id){
