@@ -41,7 +41,7 @@ class CadastroUsuario extends React.Component {
     }
 
     cancelar = () => {
-        this.props.history.push('/login')
+        this.props.history.push('/home')
     }
 
     render() {
@@ -84,7 +84,7 @@ class CadastroUsuario extends React.Component {
                                         onChange={e => this.setState({ senhaRepeticao: e.target.value })} />
                                 </FormGroup>
                                 <button type="button" onClick={this.cadastrar} className="btn btn-success mr-3"><i className="pi pi-check mr-1"></i>Salvar</button>
-                                <button onClick={this.cancelar} type="button" className="btn btn-danger">Cancelar</button>
+                                <button onClick={this.cancelar} type="button" className="btn btn-danger"><i className="pi pi-times mr-1"></i>Cancelar</button>
                             </div>
                         </div>
                     </div>

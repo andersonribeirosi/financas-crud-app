@@ -31,7 +31,7 @@ class Login extends React.Component {
             this.props.history.push('/home')
             mensagemSucesso('Usuário logado com sucesso!')
         }).catch(erro => {
-            mensagemErro(erro.response.data)
+           return mensagemErro(erro.response.data)
         })
     }
 
@@ -69,8 +69,8 @@ class Login extends React.Component {
                                                         aria-describedby="passwordHelp"
                                                         placeholder="Digite sua Senha"></input>
                                                 </FormGroup>
-                                                <button onClick={this.entrar} className="btn btn-success mr-3" type="button">Entrar</button>
-                                                <button onClick={this.cadastrar} className="btn btn-danger" type="button">Cadastrar</button>
+                                                <button onClick={this.entrar} className="btn btn-success mr-3" type="button"><i className="pi pi-sign-in mr-1"></i>Entrar</button>
+                                                <button onClick={this.cadastrar} className="btn btn-danger" type="button"><i className="pi pi-plus mr-1"></i>Cadastrar</button>
                                             </fieldset>
                                         </div>
                                     </div>

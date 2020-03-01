@@ -163,19 +163,13 @@ class CadstroLancamentos extends React.Component {
                             <div className="col-md-6">
                                 {this.state.atualizando ? 
                                 (
-                                    <button type="button" onClick={this.atualizar} className="btn btn-primary mr-3 mt-2"> Atualizar </button>
+                                    <button type="button" onClick={this.atualizar} className="btn btn-primary mr-3 mt-2"><i className="pi pi-refresh"></i> Atualizar </button>
                                 ) : (
                                     <button type="button" onClick={this.submit} className="btn btn-success mr-3 mt-2"><i className="pi pi-check mr-1"></i> Salvar </button>
                                 )}
-                                    <button type="button" onClick={this.cancelar} className="btn btn-danger mt-2"> Cancelar </button>
+                                    <button type="button" onClick={this.cancelar} className="btn btn-danger mt-2"><i className="pi pi-times"></i> Cancelar </button>
                             </div>
-                        </div>
-                    {/* <a
-                                className="btn btn-danger btn-lg mt-3 float-right"
-                                href="#/consulta-lancamentos"
-                                role="button"> <i className="fa fa-users"> Consultar Lançamentos </i>
-                            </a> */}
-                
+                        </div>               
                 </Card>
             </div>
         )
