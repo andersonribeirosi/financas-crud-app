@@ -165,7 +165,7 @@ class CadstroLancamentos extends React.Component {
                                 (
                                     <button type="button" onClick={this.atualizar} className="btn btn-primary mr-3 mt-2"> Atualizar </button>
                                 ) : (
-                                    <button type="button" onClick={this.submit} className="btn btn-success mr-3 mt-2"> Salvar </button>
+                                    <button type="button" onClick={this.submit} className="btn btn-success mr-3 mt-2"><i className="pi pi-check mr-1"></i> Salvar </button>
                                 )}
                                     <button type="button" onClick={this.cancelar} className="btn btn-danger mt-2"> Cancelar </button>
                             </div>
