@@ -8,33 +8,34 @@ import Home from '../views/home'
 import consultaLancamentos from '../views/lancamentos/consultaLancamentos'
 import cadastroLancamentos from '../views/lancamentos/cadastroLancamentos'
 
-
-function RotaAutenticada({component: Component, ...props}){
+function RotaAutenticada({ component: Component, ...props }) {
     return (
-        <Route {...props} render={ (componentProps) => {
-            if(AuthService.isUsuarioAutenticado()){
+        <Route {...props} render={(componentProps) => {
+            if (AuthService.isUsuarioAutenticado()) {
                 return (
                     <Component {...componentProps} />
                 )
-            } else{
+            } else {
                 return (
-                    <Redirect to={{pathname: '/login', state: {from: componentProps.location}}} />
+                    <Redirect to={{ pathname: '/login', exact: true, state: { from: componentProps.location } }} />
                 )
             }
         }} />
     )
-
-}
+}    
 
 function Rotas() {
     return (
         <HashRouter>
             <Switch>
-                <Route path="/login" component={Login}></Route>
+                <Route exact path="/">
+                <Redirect to="/login" component={Login} />
+                </Route>
+                <Route path="/login" component={Login} />
+                <RotaAutenticada path="/home" component={Home} />
+                <RotaAutenticada path="/consulta-lancamentos" component={consultaLancamentos} />
+                <RotaAutenticada path="/cadastro-lancamentos/:id?" component={cadastroLancamentos} />
                 <Route path="/cadastro-usuarios" component={CadastroUsuario}></Route>
-                <RotaAutenticada path="/home" component={Home}/>
-                <RotaAutenticada path="/consulta-lancamentos" component={consultaLancamentos}/>
-                <RotaAutenticada path="/cadastro-lancamentos/:id?" component={cadastroLancamentos}/>
             </Switch>
         </HashRouter>
     )
