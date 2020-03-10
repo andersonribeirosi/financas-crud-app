@@ -32,7 +32,6 @@ function Rotas() {
                 <Redirect to="/login" component={Login} />
                 </Route>
                 <Route path="/login" component={Login} />
-                
                 <Route path="/cadastro-usuarios" component={CadastroUsuario}></Route>
                 <RotaAutenticada path="/home" component={Home} />
                 <RotaAutenticada path="/consulta-lancamentos" component={consultaLancamentos} />
