@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom'
 
 import UsuarioService from '../app/service/usuarioService'
 
-
 import currencyFormatter from 'currency-formatter'
 import { AuthContext } from '../main/provedorAutenticacao'
 

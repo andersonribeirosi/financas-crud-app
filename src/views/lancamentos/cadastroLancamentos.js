@@ -6,8 +6,6 @@ import LancamentoService from '../../app/service/lancamentoService'
 import {withRouter} from 'react-router-dom'
 import * as mensagens from '../../components/toastr'
 import LocalStorageService from '../../app/service/localstorageService'
-import { Dialog } from 'primereact/dialog';
-import {Button} from 'primereact/button';
 
 class CadstroLancamentos extends React.Component {
 

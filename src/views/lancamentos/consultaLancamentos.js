@@ -74,11 +74,6 @@ class ConsultaLancamentos extends React.Component {
     }
 
     buscar = () => {
-        // if (!this.state.ano) {
-        //     mensagens.mensagemErro('O preenchimento do campo Ano é obrigatório');
-        //     return false;
-        // }
-
         const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
 
         const lancamentoFiltro = {
