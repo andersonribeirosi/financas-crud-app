@@ -36,7 +36,7 @@ class CadastroProdutos extends React.Component {
     }
 
     cancelar = () => {
-    this.props.history.push('/consulta-lancamentos')
+    this.props.history.push('/consulta-produtos')
     }
 
     submit = () => {
@@ -54,7 +54,7 @@ class CadastroProdutos extends React.Component {
         
         this.service.salvar(produto)
         .then(response => {
-            this.props.history.push('/home');
+            this.props.history.push('/consulta-produtos');
             mensagens.mensagemSucesso('Produto cadastrado com sucesso!')
         }).catch(error => {
             mensagens.mensagemErro("Todos os Campos são de preenchimento obrigatório")
@@ -63,11 +63,11 @@ class CadastroProdutos extends React.Component {
 
 
     atualizar = () => {
-        const { descricao, valor, quantidade, usuario, id} = this.state;
-        const produto = { descricao, valor, quantidade, usuario, id};
+        const { descricao, valor, quantidade, usuario, dataCadastro, id} = this.state;
+        const produto = { descricao, valor, quantidade, usuario, dataCadastro, id};
             this.service.atualizar(produto)
         .then(response => {
-            this.props.history.push('/home');
+            this.props.history.push('/consulta-produtos');
             mensagens.mensagemSucesso('Produto atualizado com sucesso!')
         }).catch(error => {
             mensagens.mensagemErro("Todos os Campos são de preenchimento obrigatório")
@@ -130,8 +130,7 @@ class CadastroProdutos extends React.Component {
                             </FormGroup>
                         </div>
                     </div>
-                    <button type="button" onClick={this.submit} className="btn btn-success mr-3 mt-2"><i className="pi pi-check mr-1"></i> Salvar </button>
-                        {/* <div className="row">
+                        <div className="row">
                             <div className="col-md-6">
                                 {this.state.atualizando ? 
                                 (
@@ -141,7 +140,7 @@ class CadastroProdutos extends React.Component {
                                 )}
                                     <button type="button" onClick={this.cancelar} className="btn btn-danger mt-2"><i className="pi pi-times"></i> Cancelar </button>
                             </div>
-                        </div>                */}
+                        </div>               
                 </Card>
             </div>
         )

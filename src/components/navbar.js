@@ -15,6 +15,7 @@ function Navbar(props) {
                     <ul className="navbar-nav">
                         <NavbarItem render={props.isUsuarioAutenticado} href="#/home" label="Home" />
                         <NavbarItem render={props.isUsuarioAutenticado} href="#/cadastro-produtos" label="Produtos" />
+                        <NavbarItem render={props.isUsuarioAutenticado} href="#/consulta-produtos" label="Consulta Produtos" />
                         <NavbarItem render={props.isUsuarioAutenticado} href="#/consulta-lancamentos" label="Lançamentos" />
                         <NavbarItem render={props.isUsuarioAutenticado} onClick={props.deslogar} href="#/login" label="Sair" />
                     </ul>

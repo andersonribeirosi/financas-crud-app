@@ -4,9 +4,10 @@ import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Login from '../views/login'
 import CadastroUsuario from '../views/cadastroUsuario'
 import Home from '../views/home'
-import consultaLancamentos from '../views/lancamentos/consultaLancamentos'
-import cadastroLancamentos from '../views/lancamentos/cadastroLancamentos'
-import cadastroProdutos from '../views/produtos/cadastroProdutos'
+import ConsultaLancamentos from '../views/lancamentos/consultaLancamentos'
+import CadastroLancamentos from '../views/lancamentos/cadastroLancamentos'
+import ConsultaProdutos from '../views/produtos/consultaProdutos'
+import CadastroProdutos from '../views/produtos/cadastroProdutos'
 import { AuthConsumer } from '../main/provedorAutenticacao'
 
 function RotaAutenticada({ component: Component, isUsuarioAutenticado, ...props }) {
@@ -34,10 +35,11 @@ function Rotas(props) {
                 </Route>
                 <Route path="/login" component={Login} />
                 <Route path="/cadastro-usuarios" component={CadastroUsuario}></Route>
-                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path="/cadastro-produtos" component={cadastroProdutos} />
                 <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path="/home" component={Home} />
-                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path="/consulta-lancamentos" component={consultaLancamentos} />
-                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path="/cadastro-lancamentos/:id?" component={cadastroLancamentos} />
+                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path="/consulta-produtos" component={ConsultaProdutos} />
+                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path="/cadastro-produtos/:id?" component={CadastroProdutos} />
+                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path="/consulta-lancamentos" component={ConsultaLancamentos} />
+                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path="/cadastro-lancamentos/:id?" component={CadastroLancamentos} />
                 <Route path="/**" component={Login} />
             </Switch>
         </HashRouter>

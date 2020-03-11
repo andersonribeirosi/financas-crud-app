@@ -26,11 +26,7 @@ export default class ProdutoService extends ApiService {
     }
 
     consultar(produtoFiltro) {
-        let params = `?ano=${produtoFiltro.ano}`
-
-        if (produtoFiltro.descricao) {
-            params = `${params}&descricao=${produtoFiltro.descricao}`
-        }
+        let params = `?descricao=${produtoFiltro.descricao}`
 
         if (produtoFiltro.valor) {
             params = `${params}&valor=${produtoFiltro.valor}`
