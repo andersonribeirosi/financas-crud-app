@@ -3,6 +3,9 @@ import Rotas from '../main/rotas'
 import Navbar from '../components/navbar'
 
 import ProvedorAutenticacao from './provedorAutenticacao'
+import 'jquery'
+import 'popper.js'
+import 'bootstrap'
 
 import 'toastr/build/toastr.min.js'
 

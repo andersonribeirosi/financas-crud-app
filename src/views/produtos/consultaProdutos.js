@@ -45,9 +45,9 @@ class ConsultaProdutos extends React.Component {
                 const index = produtos.indexOf(this.state.produtoDeletar);
                 produtos.splice(index, 1);
                 this.setState({produtos: produtos, showConfirmDialog: false});
-                mensagens.mensagemSucesso('Lançamento deletado com sucesso!')
+                mensagens.mensagemSucesso('Produto deletado com sucesso!')
             }).catch(error => {
-                mensagens.mensagemErro('Ocorreu um erro ao tentar deletar o Lançamento!')
+                mensagens.mensagemErro('Ocorreu um erro ao tentar deletar o Produto!')
             })
 
     }
@@ -157,7 +157,7 @@ class ConsultaProdutos extends React.Component {
                         modal={true} 
                         footer={confirmaDialogFooter}
                         onHide={() => this.setState({ showConfirmDialog: false })}>
-                            Confirma a exclusão deste Lançamento?
+                            Confirma a exclusão deste Produto?
                         </Dialog>
                     </div>
                 </Card>

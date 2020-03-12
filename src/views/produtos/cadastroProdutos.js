@@ -1,5 +1,4 @@
 import React from 'react'
-import SelectMenu from '../../components/selectMenu'
 import FormGroup from '../../components/form-group'
 import Card from '../../components/card'
 import ProdutoService from '../../app/service/produtoService'
@@ -13,7 +12,7 @@ class CadastroProdutos extends React.Component {
         id: null,
         descricao: '',
         valor: '',
-        quantidade: '', //ano
+        quantidade: '', 
         usuario: null,
         dataCadastro: '',
         atualizando: false
@@ -115,7 +114,7 @@ class CadastroProdutos extends React.Component {
                                 name="quantidade"
                                 value={this.state.quantidade}
                                 onChange={this.handleChange} 
-                                type="text" 
+                                type="number" 
                                 className="form-control" />
                             </FormGroup>
                         </div>
