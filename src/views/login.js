@@ -41,12 +41,13 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-6" style={{ position: 'relative', left: '300px' }}>
+            <form>
+            <div className="container-fluid">
+                <div className="form-group row">
+                    <div className="col-md-6" style={{ position: 'relative', margin: 'auto' }}>
                         <div className="bs-docs-section">
                             <Card title="Login">
-                                <div className="row">
+                                <div className="form-group row">
                                     <div className="col-lg-12">
                                         <div className="bs-component">
                                             <fieldset>
@@ -72,15 +73,19 @@ class Login extends React.Component {
                                                 <button onClick={this.entrar} className="btn btn-success mr-3" type="button"><i className="pi pi-sign-in mr-1"></i>Entrar</button>
                                                 <button onClick={this.cadastrar} className="btn btn-danger" type="button"><i className="pi pi-plus mr-1"></i>Cadastrar</button>
                                             </fieldset>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </Card>
+                            
+
                         </div>
                     </div>
                 </div>
 
             </div>
+            </form>
         )
     }
 }
